@@ -1,0 +1,19 @@
+Package: sejm
+Title: Shiny App and Access to Polish Sejm API
+Version: 0.0.0.9000
+Authors@R: 
+    person("Michał", "Wypych", , "wypych.mic@gmail.com", role = c("aut", "cre"))
+Description: Convenience functions that wrap around the Polish Sejm API to retrieve data about MPs, parties, votes etc. It also has a shiny app that shows some of the data available from the API in an interactive form.
+License: MIT + file LICENSE
+Imports: 
+    config,
+    golem,
+    shiny
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.1
+Suggests: 
+    spelling,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+Language: en-US
