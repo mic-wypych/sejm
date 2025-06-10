@@ -1,6 +1,11 @@
 #get members of bilateral groups
 
 get_bil_groups_members <- function(term = 10, group_id = NULL) {
+
+  req_url <- paste0("https://api.sejm.gov.pl/sejm/term", term, "/")
+  req <- request(req_url)
+
+
   if(is.null(group_id)) {
     group_id <- get_bil_groups(term = term) |> pull(id)
   }
