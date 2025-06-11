@@ -2,6 +2,9 @@
 #' 
 #' 
 #' @param term the parliament term
+#' 
+#' @import httr2
+#' 
 #' @returns A data frame with all interpellations
 
 get_interpellations <- function(term = 10) {

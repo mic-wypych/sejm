@@ -3,6 +3,9 @@
 #' 
 #' @param term the parliament term
 #' @param n the number of legal acts to return (defaults to 50)
+#' 
+#' @import httr2
+#' 
 #' @returns A data frame with information on legal acts
 
 get_legislation <- function(term = 10, n = 50) {

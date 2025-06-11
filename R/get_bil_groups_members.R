@@ -3,6 +3,10 @@
 #' 
 #' @param term the parliament term
 #' @param group_id the id (or ids as a vector) of the bilateral group. If left to NULL will get data for all bilateral groups 
+#' 
+#' @import httr2
+#' @importFrom purrr map_dfr
+#' @importFrom dplyr bind_rows
 #' @returns A data frame with members of bilateral groups
 
 

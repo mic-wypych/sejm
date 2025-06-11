@@ -2,6 +2,9 @@
 #' 
 #' 
 #' @param term the parliament term
+#' 
+#' @import httr2
+#' 
 #' @returns A data frame with all questions
 
 get_questions <- function(term= 10) {

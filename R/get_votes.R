@@ -3,6 +3,11 @@
 #' 
 #' @param term the parliament term
 #' @param proceeding specific proceeding to pull votes for. Will get all proceedings if left to NULL
+#' 
+#' @import httr2
+#' @importFrom purrr map_dfr
+#' @importFrom dplyr bind_rows pull
+#' 
 #' @returns A data frame with all interpellations
 
 

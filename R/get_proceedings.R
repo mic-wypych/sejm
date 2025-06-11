@@ -2,6 +2,9 @@
 #' 
 #' 
 #' @param term the parliament term
+#' 
+#' @import httr2
+#' 
 #' @returns A data frame with all proceedings for a given term
 
 
