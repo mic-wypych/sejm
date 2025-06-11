@@ -9,6 +9,8 @@
 #' @importFrom purrr map2_dfr pluck
 #' @importFrom dplyr bind_rows pull
 #' 
+#' @export
+#' 
 #' @returns A data frame with information how each MP voted in given votes
 
 get_mp_votes <- function(term = 10, proceeding = NULL, vote_id = NULL) {

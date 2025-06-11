@@ -5,6 +5,8 @@
 #' 
 #' @import httr2
 #' 
+#' @export
+#' 
 #' @returns A data frame with all bilateral groups for a given term
 
 get_bil_groups <- function(term= 10) {

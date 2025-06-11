@@ -7,6 +7,9 @@
 #' @import httr2
 #' @importFrom purrr map_dfr
 #' @importFrom dplyr bind_rows
+#' 
+#' @export
+#' 
 #' @returns A data frame with members of bilateral groups
 
 

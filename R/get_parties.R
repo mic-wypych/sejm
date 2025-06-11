@@ -5,6 +5,8 @@
 #' 
 #' @import httr2
 #' 
+#' @export
+#' 
 #' @returns A data frame with information on parties
 
 

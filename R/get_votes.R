@@ -8,6 +8,8 @@
 #' @importFrom purrr map_dfr
 #' @importFrom dplyr bind_rows pull
 #' 
+#' @export
+#' 
 #' @returns A data frame with all interpellations
 
 

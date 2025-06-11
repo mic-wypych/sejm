@@ -5,6 +5,8 @@
 #' 
 #' @import httr2
 #' 
+#' @export
+#' 
 #' @returns A data frame with all committees in a given parliament term
 
 get_comittees <- function(term= 10) {

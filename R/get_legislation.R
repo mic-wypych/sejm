@@ -6,6 +6,8 @@
 #' 
 #' @import httr2
 #' 
+#' @export
+#' 
 #' @returns A data frame with information on legal acts
 
 get_legislation <- function(term = 10, n = 50) {

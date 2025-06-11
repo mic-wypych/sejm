@@ -5,6 +5,8 @@
 #' 
 #' @import httr2
 #' 
+#' @export
+#' 
 #' @returns A data frame with all interpellations
 
 get_interpellations <- function(term = 10) {

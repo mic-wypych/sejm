@@ -5,6 +5,8 @@
 #' 
 #' @import httr2
 #' 
+#' @export
+#' 
 #' @returns A data frame with all questions
 
 get_questions <- function(term= 10) {
