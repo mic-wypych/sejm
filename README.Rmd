@@ -28,7 +28,7 @@ It also provides a shiny app to interactively browse information on Polish sejm.
 
 You can install the development version of `{sejm}` like so:
 
-```{r}
+```{r, eval=FALSE}
 remotes::install_github("mic-wypych/sejm")
 ```
 
