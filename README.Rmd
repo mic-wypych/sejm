@@ -19,7 +19,7 @@ output: github_document
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 <!-- badges: end -->
 
-THe package provides convenience functions to access Polish sejm API 
+The package provides convenience functions to access Polish sejm API 
 and retrieve information on parties, MPs, votes, interpellations, committees etc.
 
 It also provides a shiny app to interactively browse information on Polish sejm.
@@ -34,10 +34,19 @@ remotes::install_github("mic-wypych/sejm")
 
 ## Run
 
-You can launch the application by running:
+You can launch the application by running (note this is not operational yet)
 
 ```{r, eval = FALSE}
 sejm::run_app()
+```
+
+## Accessing the Sejm API
+
+All functions for accessing data from the Sejm API start with `get_`. E.g. `get_parties()`
+will get basic data on the parties in Polish sejm like their names, members count and contact info.
+
+```{r, eval=FALSE}
+sejm::get_parties()
 ```
 
 ## About
