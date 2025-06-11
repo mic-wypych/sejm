@@ -1,4 +1,8 @@
-# get parties basic data
+#' get basic information on parties
+#' 
+#' 
+#' @param term the parliament term
+#' @returns A data frame with information on parties
 
 
 

@@ -1,4 +1,10 @@
-#get information how each mp votes in each vote
+#' get information how MPs voted in particular votes
+#' 
+#' 
+#' @param term the parliament term
+#' @param proceeding specific proceeding to pull votes from. Will get all proceedings if left to NULL
+#' @param vote_id specific id of a vote to pull how each MP voted. Will get all votes if left to NULL
+#' @returns A data frame with information how each MP voted in given votes
 
 get_mp_votes <- function(term = 10, proceeding = NULL, vote_id = NULL) {
   req_url <- paste0("https://api.sejm.gov.pl/sejm/term", term, "/")

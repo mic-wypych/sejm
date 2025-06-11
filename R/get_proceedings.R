@@ -1,4 +1,8 @@
-# get data on proceedings
+#' get proceedings pf polish sejm
+#' 
+#' 
+#' @param term the parliament term
+#' @returns A data frame with all proceedings for a given term
 
 
 get_proceedings <- function(term = 10) {

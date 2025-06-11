@@ -1,4 +1,9 @@
-#gets information on votes per proceedings
+#' get information on votes per proceeding
+#' 
+#' 
+#' @param term the parliament term
+#' @param proceeding specific proceeding to pull votes for. Will get all proceedings if left to NULL
+#' @returns A data frame with all interpellations
 
 
 get_votes <- function(term = 10, proceeding = NULL) {

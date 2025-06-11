@@ -1,4 +1,10 @@
-#get members of bilateral groups
+#' get members of bilateral groups
+#' 
+#' 
+#' @param term the parliament term
+#' @param group_id the id (or ids as a vector) of the bilateral group. If left to NULL will get data for all bilateral groups 
+#' @returns A data frame with members of bilateral groups
+
 
 get_bil_groups_members <- function(term = 10, group_id = NULL) {
 

@@ -1,4 +1,8 @@
-# get members of parliament for a given term
+#' get basic information on MPs in a given term
+#' 
+#' 
+#' @param term the parliament term
+#' @returns A data frame with all MPs for a given term
 
 
 

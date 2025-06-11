@@ -1,4 +1,8 @@
-# get interpellations
+#' get all MP interpellations for a given term
+#' 
+#' 
+#' @param term the parliament term
+#' @returns A data frame with all interpellations
 
 get_interpellations <- function(term = 10) {
   req_url <- paste0("https://api.sejm.gov.pl/sejm/term", term, "/")
