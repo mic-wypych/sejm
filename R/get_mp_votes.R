@@ -18,9 +18,9 @@ get_mp_votes <- function(term = 10, proceeding = NULL, vote_id = NULL) {
   if(is.null(vote_id)) {
     votes <- get_votes(term = term, proceeding = proceeding)
     vote_id <- votes |>
-      pull(votingNumber)
+      pull("votingNumber")
     sitting <- votes |>
-      pull(sitting)
+      pull("sitting")
   }
 
   map2_dfr(sitting, vote_id, \(x, y) bind_rows(req |>

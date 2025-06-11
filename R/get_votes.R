@@ -17,7 +17,7 @@ get_votes <- function(term = 10, proceeding = NULL) {
   req <- request(req_url)
 
   if(is.null(proceeding)) {
-    proceeding <- get_proceedings(term = term) |> pull(number)
+    proceeding <- get_proceedings(term = term) |> pull("number")
   }
   
   map_dfr(proceeding, \(x) bind_rows(req |>
