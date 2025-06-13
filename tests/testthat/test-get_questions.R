@@ -5,7 +5,7 @@ test_that("test that result is a dataframe", {
 })
 
 test_that("function works for various sejm terms", {
-  d <- get_questions(term = 2)
+  d <- get_questions(term = 7)
   
   expect_s3_class(d, "data.frame")
 })
