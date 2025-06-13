@@ -5,7 +5,7 @@ test_that("test that result is a dataframe", {
 })
 
 test_that("function works for various sejm terms", {
-  d <- get_mp_votes(term = 2)
+  d <- get_mp_votes(term = 7)
   
   expect_s3_class(d, "data.frame")
 })
@@ -21,3 +21,5 @@ test_that("function works for various vote ids", {
   
   expect_s3_class(d, "data.frame")
 })
+
+#there is a problem with get_proceedings for low 
