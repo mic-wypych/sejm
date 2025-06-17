@@ -11,7 +11,7 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 
 The package provides convenience functions to access Polish [sejm
 API](https://api.sejm.gov.pl/sejm.html) and retrieve information on
-parties, MPs, votes, interpellations, committees etc.
+parties, MPs, votes, interpellations, committees etc
 
 It also provides a shiny app to interactively browse information on
 Polish sejm.
