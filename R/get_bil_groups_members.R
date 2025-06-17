@@ -14,7 +14,7 @@
 
 
 get_bil_groups_members <- function(term = 10, group_id = NULL) {
-
+  stopifnot(term >= 5)
   req_url <- paste0("https://api.sejm.gov.pl/sejm/term", term, "/")
   req <- request(req_url)
 

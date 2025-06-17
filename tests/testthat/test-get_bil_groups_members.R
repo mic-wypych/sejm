@@ -18,7 +18,6 @@ test_that("function works for specific group_id", {
 })
 
 test_that("function empty list when with term < 5", {
-  d <- get_bil_groups_members(term = 2)
-  
-  expect_equal(d, list())
+
+  expect_error(d, get_bil_groups_members(term = 4))
 })

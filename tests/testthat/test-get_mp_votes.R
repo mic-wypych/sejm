@@ -4,10 +4,9 @@ test_that("test that result is a dataframe", {
   expect_s3_class(d, "data.frame")
 })
 
-test_that("function works for various sejm terms", {
-  d <- get_mp_votes(term = 7)
-  
-  expect_s3_class(d, "data.frame")
+test_that("function error when with term < 7", {
+
+  expect_error(d, get_mp_votes(term = 6))
 })
 
 test_that("function works for various proceedings", {

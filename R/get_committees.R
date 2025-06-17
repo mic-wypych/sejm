@@ -10,6 +10,7 @@
 #' @returns A data frame with all committees in a given parliament term
 
 get_comittees <- function(term= 10) {
+  stopifnot(term>=3)
   req_url <- paste0("https://api.sejm.gov.pl/sejm/term", term, "/")
   req <- request(req_url)
 

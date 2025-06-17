@@ -12,7 +12,7 @@
 
 
 get_parties <- function(term = 10) {
-
+  stopifnot(term >= 6)
   req_url <- paste0("https://api.sejm.gov.pl/sejm/term", term, "/")
   req <- request(req_url)
 

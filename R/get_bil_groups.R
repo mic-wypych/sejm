@@ -10,6 +10,7 @@
 #' @returns A data frame with all bilateral groups for a given term
 
 get_bil_groups <- function(term= 10) {
+  stopifnot(term >=5)
   req_url <- paste0("https://api.sejm.gov.pl/sejm/term", term, "/")
   req <- request(req_url)
 
