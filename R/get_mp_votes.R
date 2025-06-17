@@ -22,11 +22,11 @@ get_mp_votes <- function(term = 10, proceeding = NULL, vote_id = NULL) {
     votes <- get_votes(term = term, proceeding = proceeding)
     vote_id <- votes |>
       pull("votingNumber")
-    sitting <- votes |>
+    proceeding <- votes |>
       pull("sitting")
   }
 
-  map2_dfr(sitting, vote_id, \(x, y) bind_rows(req |>
+  map2_dfr(proceeding, vote_id, \(x, y) bind_rows(req |>
     req_url_path_append(paste0("votings/", x, "/", y)) |>
     req_user_agent("sejm (https://github.com/mic-wypych/sejm)") |>
     req_perform() |>
