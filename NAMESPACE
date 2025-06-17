@@ -2,7 +2,7 @@
 
 export(get_bil_groups)
 export(get_bil_groups_members)
-export(get_comittees)
+export(get_committees)
 export(get_interpellations)
 export(get_legislation)
 export(get_mp_votes)

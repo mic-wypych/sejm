@@ -6,5 +6,5 @@ test_that("test that result is a dataframe", {
 
 test_that("function error when with term < 7", {
 
-  expect_error(d, get_votes(term = 6))
+  expect_error(get_votes(term = 6))
 })
