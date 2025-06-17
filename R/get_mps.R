@@ -12,7 +12,7 @@
 
 
 get_mps <- function(term = 10) {
-
+  stopifnot(term >= 3)
   req_url <- paste0("https://api.sejm.gov.pl/sejm/term", term, "/")
   req <- request(req_url)
 

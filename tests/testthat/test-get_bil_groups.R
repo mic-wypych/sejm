@@ -11,7 +11,6 @@ test_that("function works for various sejm terms", {
 })
 
 test_that("function empty list when with term < 5", {
-  d <- get_bil_groups(term = 2)
-  
-  expect_equal(d, list())
+
+  expect_error(get_bil_groups(term = 4))
 })

@@ -14,7 +14,7 @@
 
 
 get_votes <- function(term = 10, proceeding = NULL) {
-
+  stopifnot(term >= 7)
   req_url <- paste0("https://api.sejm.gov.pl/sejm/term", term, "/")
   req <- request(req_url)
 
