@@ -10,7 +10,7 @@
 mod_votes_time_ui <- function(id) {
   ns <- NS(id)
   tagList(
- 
+    plotly::plotlyOutput(ns("votes_time_plot"))
   )
 }
     
@@ -20,7 +20,9 @@ mod_votes_time_ui <- function(id) {
 mod_votes_time_server <- function(id){
   moduleServer(id, function(input, output, session){
     ns <- session$ns
- 
+    output$votes_time_plot <- plotly::renderPlotly({
+      shinipsum::random_ggplotly(type = "line")
+    })
   })
 }
     

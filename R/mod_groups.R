@@ -10,7 +10,7 @@
 mod_groups_ui <- function(id) {
   ns <- NS(id)
   tagList(
- 
+    plotly::plotlyOutput(ns("groups_plot"))
   )
 }
     
@@ -20,7 +20,9 @@ mod_groups_ui <- function(id) {
 mod_groups_server <- function(id){
   moduleServer(id, function(input, output, session){
     ns <- session$ns
- 
+    output$groups_plot <- plotly::renderPlotly({
+      shinipsum::random_ggplotly(type = "bar")
+    })
   })
 }
     

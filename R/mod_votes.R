@@ -10,7 +10,7 @@
 mod_votes_ui <- function(id) {
   ns <- NS(id)
   tagList(
- 
+    DT::DTOutput(ns("votes_table"))
   )
 }
     
@@ -20,7 +20,9 @@ mod_votes_ui <- function(id) {
 mod_votes_server <- function(id){
   moduleServer(id, function(input, output, session){
     ns <- session$ns
- 
+    output$votes_table <- DT::renderDT({
+      shinipsum::random_DT(nrow = 10, ncol = 5, type = "random")
+    })
   })
 }
     

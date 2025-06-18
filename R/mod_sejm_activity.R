@@ -21,7 +21,7 @@ mod_sejm_activity_server <- function(id){
   moduleServer(id, function(input, output, session){
     ns <- session$ns
     output$sejm_activity <- DT::renderDT({
-      shinipsum::random_DT(nrow = 10, ncol = 6)
+      shinipsum::random_DT(nrow = 10, ncol = 5, type = "random")
     })
   })
 }

@@ -6,11 +6,14 @@
 #'
 #' @noRd 
 #'
+#' @import ggplot2
 #' @importFrom shiny NS tagList 
+#' @importFrom shinipsum random_ggplotly
+#' @importFrom plotly renderPlotly plotlyOutput
 mod_committees_ui <- function(id) {
   ns <- NS(id)
   tagList(
- 
+    plotly::plotlyOutput(ns("committees_plot"))
   )
 }
     
@@ -20,7 +23,9 @@ mod_committees_ui <- function(id) {
 mod_committees_server <- function(id){
   moduleServer(id, function(input, output, session){
     ns <- session$ns
- 
+    output$committees_plot <- plotly::renderPlotly({
+      shinipsum::random_ggplotly(type = "bar")
+    })
   })
 }
     

@@ -18,14 +18,25 @@ app_ui <- function(request) {
         bslib::navset_card_underline(
           title = "Członkowie sejmu",
           bslib::nav_panel("Skład sejmu", mod_sejm_members_ui("member_plot")),
-          bslib::nav_panel("Aktywność posłów", mod_sejm_members_ui("sejm_act"))
+          bslib::nav_panel("Aktywność posłów", mod_sejm_activity_ui("sejm_act"))
         )
       ),
       bslib::nav_panel(
-        "Komisje"
+        "Komisje",
+        bslib::navset_card_underline(
+          title = "Członkowie sejmu",
+          bslib::nav_panel("komisje sejmowe", mod_committees_ui("committees_1")),
+          bslib::nav_panel("Grupy bilateralne", mod_groups_ui("groups_plot"))
+        )
       ),
       bslib::nav_panel(
-        "Aktywność"
+        "Głosowania",
+        bslib::navset_card_underline(
+          title = "Głosowania w sejmie",
+          bslib::nav_panel("Głosowania", mod_votes_ui("votes_1")),
+          bslib::nav_panel("Głosowania w czasie", mod_votes_time_ui("votes_time_1")),
+          bslib::nav_panel("Głosowania posłów", mod_votes_mps_ui("votes_mps_1"))
+        )
       )
       
       
