@@ -3,14 +3,32 @@
 #' @param request Internal parameter for `{shiny}`.
 #'     DO NOT REMOVE.
 #' @import shiny
+#' @import bslib
 #' @noRd
 app_ui <- function(request) {
   tagList(
     # Leave this function for adding external resources
     golem_add_external_resources(),
     # Your application UI logic
-    fluidPage(
-      golem::golem_welcome_page() # Remove this line to start building your UI
+    bslib::page_navbar(
+      title = "Polski Sejm",
+      bslib::nav_spacer(),
+      bslib::nav_panel(
+        "Posłowie",
+        bslib::navset_card_underline(
+          title = "Członkowie sejmu",
+          bslib::nav_panel("Skład sejmu", mod_sejm_members_ui("member_plot")),
+          bslib::nav_panel("Aktywność posłów", mod_sejm_members_ui("sejm_act"))
+        )
+      ),
+      bslib::nav_panel(
+        "Komisje"
+      ),
+      bslib::nav_panel(
+        "Aktywność"
+      )
+      
+      
     )
   )
 }

@@ -6,11 +6,15 @@
 #'
 #' @noRd 
 #'
+#' @import ggplot2
 #' @importFrom shiny NS tagList 
+#' @importFrom shinipsum random_ggplotly
+#' @importFrom plotly renderPlotly plotlyOutput
+
 mod_sejm_members_ui <- function(id) {
   ns <- NS(id)
   tagList(
- 
+    plotly::plotlyOutput(ns("members_plot"))
   )
 }
     
@@ -20,7 +24,9 @@ mod_sejm_members_ui <- function(id) {
 mod_sejm_members_server <- function(id){
   moduleServer(id, function(input, output, session){
     ns <- session$ns
- 
+    output$members_plot <- plotly::renderPlotly({
+      shinipsum::random_ggplotly(type = "point")
+    })
   })
 }
     

@@ -10,7 +10,7 @@
 mod_sejm_activity_ui <- function(id) {
   ns <- NS(id)
   tagList(
- 
+    DT::DTOutput(ns("sejm_activity"))
   )
 }
     
@@ -20,7 +20,9 @@ mod_sejm_activity_ui <- function(id) {
 mod_sejm_activity_server <- function(id){
   moduleServer(id, function(input, output, session){
     ns <- session$ns
- 
+    output$sejm_activity <- DT::renderDT({
+      shinipsum::random_DT(nrow = 10, ncol = 6)
+    })
   })
 }
     
