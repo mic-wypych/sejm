@@ -1,9 +1,9 @@
 ---
 title: "committees_groups"
-output: rmarkdown::html_vignette
+output: quarto::html_vignette
 vignette: >
   %\VignetteIndexEntry{committees_groups}
-  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEngine{quarto::html}
   %\VignetteEncoding{UTF-8}
 ---
 
@@ -31,7 +31,8 @@ This vignette contains the backend logic for the committees and bilateral gorup 
 First lets load the data for committees members
 
 ```{r}
-coms_members_df <- sejm::get_committees() |>
+devtools::load_all()
+coms_members_df <- get_committees() |>
   unnest(members)
 ```
 

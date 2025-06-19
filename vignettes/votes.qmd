@@ -1,9 +1,9 @@
 ---
-title: "sejm_members"
-output: rmarkdown::html_vignette
+title: "votes"
+output: quarto::html_vignette
 vignette: >
-  %\VignetteIndexEntry{sejm_members}
-  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{votes}
+  %\VignetteEngine{quarto::html}
   %\VignetteEncoding{UTF-8}
 ---
 

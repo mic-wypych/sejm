@@ -1,0 +1,41 @@
+---
+title: "sejm_members"
+output: quarto::html_vignette
+vignette: >
+  %\VignetteIndexEntry{sejm_members}
+  %\VignetteEngine{quarto::html}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(sejm)
+```
+
+
+## Members of sejm with basic info
+
+- get data on mps
+- wrangle into proper shape
+- plot with hover
+- add logic to display info on click
+
+## Table with MP activity
+
+- get data on mps
+- get data on interpellations
+- get data on questions
+- get data on votes?
+- get data on photos?
+- make it in reactable table
+
+Get data:
+```{r}
+
+```
