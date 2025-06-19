@@ -12,6 +12,16 @@ app_ui <- function(request) {
     # Your application UI logic
     bslib::page_navbar(
       title = "Polski Sejm",
+      theme = bslib::bs_theme(
+        bg = "#FFF",
+        fg = "#333333",
+        primary = "#780000",
+        secondary = "#2b2d42",
+        success = "#009E73",
+        base_font = bslib::font_google("Lato"),
+        code_font = bslib::font_google("JetBrains Mono")
+      ),
+
       bslib::nav_spacer(),
       bslib::nav_panel(
         "Posłowie",
