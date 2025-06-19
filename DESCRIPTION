@@ -3,28 +3,32 @@ Title: Shiny App and Access to Polish Sejm API
 Version: 0.0.0.9000
 Authors@R: 
     person("Michał", "Wypych", , "wypych.mic@gmail.com", role = c("aut", "cre"))
-Description: Convenience functions that wrap around the Polish Sejm API to retrieve data about MPs, parties, votes etc. It also has a shiny app that shows some of the data available from the API in an interactive form.
+Description: Convenience functions that wrap around the Polish Sejm API to
+    retrieve data about MPs, parties, votes etc. It also has a shiny app
+    that shows some of the data available from the API in an interactive
+    form.
 License: MIT + file LICENSE
 Imports: 
-    config,
-    golem,
-    shiny,
-    httr2,
-    dplyr,
-    purrr,
-    ggplot2,
-    plotly,
-    shinipsum,
     bslib,
-    bsicons
-Encoding: UTF-8
-LazyData: true
-RoxygenNote: 7.3.2
+    config,
+    dplyr,
+    DT,
+    ggplot2,
+    golem,
+    httr2,
+    plotly,
+    purrr,
+    shinipsum,
+    shiny
 Suggests: 
     knitr,
     rmarkdown,
     spelling,
     testthat (>= 3.0.0)
+VignetteBuilder: 
+    knitr
 Config/testthat/edition: 3
+Encoding: UTF-8
 Language: en-US
-VignetteBuilder: knitr
+LazyData: true
+RoxygenNote: 7.3.2
