@@ -62,12 +62,60 @@ vote_df <- get_votes()
 
 
 ```{r}
+ vote_time_plot <- vote_df %>%
+        count(date) |>
+        ggplot(aes(x = date, y = n, text = glue("data: {date}<br>votes: {n}"))) +
+        geom_col(fill = "#780000", width = 1.5) +
+        scale_x_date(date_breaks = "month") +
+        theme_minimal() +
+        labs(title = "Number of votes per day", y = "ilosć głosowań", x = NULL) +
+        theme(axis.text.x = element_text(angle = 90),
+            panel.grid = element_blank(),
+            panel.grid.major.x = element_line(color = "grey80", linetype = "dashed"))
 
+      ggplotly(vote_time_plot, tooltip = "text") %>%
+        layout(
+          hoverlabel = list(
+            bgcolor = "white", 
+            bordercolor = "black", 
+            font = list(family = "Arial", size = 12)
+          ),
+          legend = list(orientation = "h", y = -0.1)
+        )
 ```
 
 ## mps votes
 
+How do we get a network of all votes
 
 ```{r}
+library(widyr)
+library(igraph)
+library(ggraph)
+
+mps_votes <- get_mp_votes()
+
+
+pairwise_count(item, name, sort = TRUE, upper = FALSE) %>%
+  graph_from_data_frame() %>% 
+  ggraph(layout = "fr") + 
+  geom_edge_link(aes(edge_alpha = n, edge_width = n), edge_colour = '#656d4a') +
+  geom_node_point(size = 4, shape = 18, color = 'grey20') +
+  geom_node_text(aes(label = name), repel = TRUE,
+                 size = 9, family='Merriweather') +
+  labs(title = 'Items in Alone Series',
+       subtitle = 'The plot shows which items were most commonly taken together',
+       caption = "#Tidytuesday 2023 Week 4 | data from Alone R package | @michal_wypych"
+  ) +
+  theme_void() +
+  theme(text = element_text(family='Merriweather', size = 20, color = 'grey20'),
+        plot.title = element_text(size = 80, family='Merriweather', hjust = .5),
+        plot.subtitle =  element_text(size = 20, family='Merriweather', color = 'grey20', lineheight = .3, hjust = .5, margin = margin(0,0,20,0)),
+        plot.caption = element_text(size = 10, family = "Merriweather", color = "grey60"),
+        plot.background = element_rect(fill='#edede9'),
+        legend.position = 'none',
+        panel.grid = element_blank(),
+        plot.margin = margin(20,20,20,20))
+
 
 ```
