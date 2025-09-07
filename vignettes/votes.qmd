@@ -63,6 +63,7 @@ vote_df <- get_votes()
 
 ```{r}
  vote_time_plot <- vote_df %>%
+        mutate(date = as.Date(date)) %>%
         count(date) |>
         ggplot(aes(x = date, y = n, text = glue("data: {date}<br>votes: {n}"))) +
         geom_col(fill = "#780000", width = 1.5) +
@@ -95,7 +96,8 @@ library(ggraph)
 
 mps_votes <- get_mp_votes()
 
-
+mps_votes %>%
+  
 pairwise_count(item, name, sort = TRUE, upper = FALSE) %>%
   graph_from_data_frame() %>% 
   ggraph(layout = "fr") + 
