@@ -1,0 +1,172 @@
+---
+title: "sejm_members"
+output: quarto::html_vignette
+vignette: >
+  %\VignetteIndexEntry{sejm_members}
+  %\VignetteEngine{quarto::html}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(sejm)
+library(tidyr)
+library(dplyr)
+library(ggplot2)
+library(plotly)
+library(reactable)
+library(stringr)
+library(glue)
+```
+
+
+## Members of sejm with basic info
+
+- get data on mps
+- wrangle into proper shape
+- plot with hover
+- add logic to display info on click
+
+```{r}
+devtools::load_all()
+df_mps <- get_mps()
+
+df_mps <- get_mps()
+
+members_by_party <- df_mps %>%
+        group_by(club) %>%
+        arrange(lastName) %>%
+        mutate(party_size = n()) %>%
+        ungroup()
+      
+      # Order parties by size (optional)
+      party_order <- members_by_party %>%
+        group_by(club) %>%
+        summarize(count = n()) %>%
+        arrange(desc(count)) %>%
+        pull(club)
+      
+      members_by_party$club <- factor(members_by_party$club, levels = rev(c("Razem", "Lewica", "Polska2050-TD", "PSL-TD", "KO", "PiS", "Republikanie", "Konfederacja", "niez.")))
+      members_arranged <- members_by_party %>% arrange(club, lastName) %>% ungroup()
+
+# trying plotly
+
+map_to_angle <- function(x, a, b) {
+  c <- 0
+  d <- 180
+  c + (x - a) * (d - c) / (b - a)
+}
+
+members_arranged %>%
+  mutate(position = row_number()) %>%
+  mutate(pos_y = c(rep(1:5, 98), 1:4)) %>%
+  mutate(angle = map_to_angle(position, min(position), max(position))) %>%
+plot_ly(
+  type = 'scatterpolar',
+  r = ~pos_y,
+  text = ~firstLastName,
+  theta = ~angle,
+  color = ~ club,
+  mode = 'markers',
+  colors = c("PiS" = "#012b7f", "KO" = "#d41c3c", "PSL-TD" = "#3cb43c",
+        "Polska2050-TD" = "#f9c300", "Lewica" = "#a81849", "Razem" = "#870f57",
+        "Konfederacja" = "#1b263f", "Republikanie" = "#749cbc", "niez." = "#000000"),
+        marker = list(
+    size = 8,     # point size
+    opacity = 0.6  # transparency (0 = invisible, 1 = solid)
+  )
+) %>%
+  layout(
+    polar = list(
+      sector = c(0,180),
+      radialaxis = list(
+        showticklabels = FALSE,  # hide radial tick labels
+        ticks = "",              # remove tick marks
+        showline = FALSE,        # hide axis line
+        showgrid = FALSE         # hide radial grid
+      ),
+      angularaxis = list(
+        showticklabels = FALSE,  # hide angular tick labels
+        ticks = "",              
+        showline = FALSE,
+        showgrid = FALSE
+      )
+    )
+    
+  )
+
+```
+
+## Table with MP activity
+
+- get data on mps
+- get data on interpellations
+- get data on questions
+- get data on votes?
+- get data on photos?
+- make it in reactable table
+
+Get data:
+```{r}
+devtools::load_all()
+
+
+df_int <- get_interpellations() |> 
+  unnest(from) |> 
+  count(from, name = "inter_count") |>
+        mutate(from = as.integer(from))
+df_q <- get_questions() |> 
+  unnest(from) |> 
+  count(from, name = "q_count") |>
+  mutate(from = as.integer(from))
+
+df_mps <- df_mps %>%
+        left_join(df_q, by = c("id" = "from")) |>
+        left_join(df_int, by = c("id" = "from")) |>
+        mutate(q_count = replace_na(q_count, 0),
+               inter_count = replace_na(inter_count, 0))
+```
+
+
+make the table:
+
+
+```{r}
+bar_chart <- function(label, width = "100%", height = "1rem", fill = "#00bfc4", background = NULL) {
+        bar <- div(style = list(background = fill, width = width, height = height, transition = "width 0.6s ease"))
+        chart <- div(style = list(flexGrow = 1, marginLeft = "0.5rem", background = background), bar)
+        div(style = list(display = "flex", alignItems = "center"), label, chart)
+      }
+
+df_mps |>
+        mutate(photo = paste0("https://api.sejm.gov.pl/sejm/term10/MP/", id, "/photo")) %>%
+        select(firstLastName, photo, club, birthDate, districtName, numberOfVotes, q_count, inter_count) |>
+        reactable(
+          columns = list(
+            numberOfVotes = colDef(name = "number of votes", align = "left", cell = function(value) {
+              width <- paste0(value / max(df_mps$numberOfVotes) * 100, "%")
+              bar_chart(value, width = width)
+            }),
+            photo = colDef(cell = function(value) {
+              image <- img(src = sprintf(value), style = "height: 50px; border-radius: 20%;")
+              tagList(
+                div(style = "display: inline-block; width: 45px;", image)
+              )
+            }),
+            q_count = colDef(name = "number of questions", align = "left", cell = function(value) {
+              width <- paste0(value / max(df_mps$q_count) * 100, "%")
+              bar_chart(value, width = width, fill = "#2a9d8f")
+            }),
+            inter_count = colDef(name = "number of interpellations", align = "left", cell = function(value) {
+              width <- paste0(value / max(df_mps$inter_count) * 100, "%")
+              bar_chart(value, width = width, fill = "#8338ec")
+            })
+          ))
+
+```

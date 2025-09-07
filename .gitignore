@@ -1,3 +1,6 @@
 .Rproj.user
 
 scratch/
+inst/doc
+/doc/
+/Meta/
