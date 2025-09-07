@@ -19,7 +19,8 @@ Imports:
     plotly,
     purrr,
     shinipsum,
-    shiny
+    shiny,
+    widyr
 Suggests: 
     quarto,
     knitr,
