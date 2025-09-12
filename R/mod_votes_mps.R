@@ -6,6 +6,10 @@
 #'
 #' @noRd 
 #'
+#' @import ggplot2
+#' @import dplyr
+#' @import tidyr
+#' @import plotly
 #' @importFrom shiny NS tagList 
 mod_votes_mps_ui <- function(id) {
   ns <- NS(id)

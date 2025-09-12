@@ -7,6 +7,11 @@
 #' @noRd 
 #'
 #' @importFrom shiny NS tagList 
+#' @import ggplot2
+#' @import dplyr
+#' @import tidyr
+#' @import plotly
+#' @import reactable
 mod_votes_ui <- function(id) {
   ns <- NS(id)
   tagList(

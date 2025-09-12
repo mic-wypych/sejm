@@ -6,6 +6,10 @@
 #'
 #' @noRd 
 #'
+#' @import ggplot2
+#' @import dplyr
+#' @import tidyr
+#' @import plotly
 #' @importFrom shiny NS tagList 
 mod_votes_time_ui <- function(id) {
   ns <- NS(id)
@@ -33,8 +37,8 @@ mod_votes_time_server <- function(id, vote_df){
             panel.grid = element_blank(),
             panel.grid.major.x = element_line(color = "grey80", linetype = "dashed"))
 
-      ggplotly(vote_time_plot, tooltip = "text") %>%
-        layout(
+      plotly::ggplotly(vote_time_plot, tooltip = "text") %>%
+        plotly::layout(
           hoverlabel = list(
             bgcolor = "white", 
             bordercolor = "black", 

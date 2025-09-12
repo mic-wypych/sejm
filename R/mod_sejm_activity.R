@@ -7,6 +7,10 @@
 #' @noRd 
 #'
 #' @importFrom shiny NS tagList 
+#' @import ggplot2
+#' @import dplyr
+#' @import tidyr
+#' @import reactable
 mod_sejm_activity_ui <- function(id) {
   ns <- NS(id)
   tagList(
