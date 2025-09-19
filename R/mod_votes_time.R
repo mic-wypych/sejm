@@ -12,8 +12,8 @@
 #' @import plotly
 #' @importFrom shiny NS tagList 
 mod_votes_time_ui <- function(id) {
-  ns <- NS(id)
-  tagList(
+  ns <- shiny::NS(id)
+  shiny::tagList(
     plotly::plotlyOutput(ns("votes_time_plot"))
   )
 }
@@ -22,20 +22,20 @@ mod_votes_time_ui <- function(id) {
 #'
 #' @noRd 
 mod_votes_time_server <- function(id, vote_df){
-  moduleServer(id, function(input, output, session){
+ shiny::moduleServer(id, function(input, output, session){
     ns <- session$ns
     output$votes_time_plot <- plotly::renderPlotly({
       vote_time_plot <- vote_df %>%
-        mutate(date = as.Date(date)) %>%
-        count(date) |>
-        ggplot(aes(x = date, y = n, text = glue("data: {date}<br>votes: {n}"))) +
-        geom_col(fill = "#780000", width = 1.5) +
-        scale_x_date(date_breaks = "month") +
-        theme_minimal() +
-        labs(title = "Number of votes per day", y = "ilosć głosowań", x = NULL) +
-        theme(axis.text.x = element_text(angle = 90),
-            panel.grid = element_blank(),
-            panel.grid.major.x = element_line(color = "grey80", linetype = "dashed"))
+        dplyr::mutate(date = as.Date(date)) %>%
+        dplyr::count(date) |>
+        ggplot2::ggplot(aes(x = date, y = n, text = glue::glue("data: {date}<br>votes: {n}"))) +
+        ggplot2::geom_col(fill = "#780000", width = 1.5) +
+        ggplot2::scale_x_date(date_breaks = "month") +
+        ggplot2::theme_minimal() +
+        ggplot2::labs(title = "Number of votes per day", y = "ilosć głosowań", x = NULL) +
+        ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 90),
+            panel.grid = ggplot2::element_blank(),
+            panel.grid.major.x = ggplot2::element_line(color = "grey80", linetype = "dashed"))
 
       plotly::ggplotly(vote_time_plot, tooltip = "text") %>%
         plotly::layout(
