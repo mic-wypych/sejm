@@ -7,9 +7,10 @@
 #' @noRd 
 #'
 #' @import ggplot2
+#' @import dplyr
+#' @import tidyr
+#' @import plotly
 #' @importFrom shiny NS tagList 
-#' @importFrom shinipsum random_ggplotly
-#' @importFrom plotly renderPlotly plotlyOutput
 mod_committees_ui <- function(id) {
   ns <- NS(id)
   tagList(
@@ -25,24 +26,24 @@ mod_committees_server <- function(id){
     ns <- session$ns
     output$committees_plot <- plotly::renderPlotly({
       coms_members_df <- get_committees() |>
-        unnest(members)
+        tidyr::unnest(members)
 
       waffle_df <- coms_members_df %>%
-        group_by(name) %>%
-        arrange(club, lastFirstName) %>%
-        mutate(
-          id = row_number(),        # unique ID per MP in committee
+        dplyr::group_by(name) %>%
+        dplyr::arrange(club, lastFirstName) %>%
+        dplyr::mutate(
+          id = dplyr::row_number(),        # unique ID per MP in committee
           row = (id - 1) %/% 10,    # 10 tiles per row
           col = (id - 1) %% 10,
           position = `function`,
-          name = str_wrap(name, 50),
-          position = replace_na(position, " ")
+          name = stringr::str_wrap(name, 50),
+          position = tidyr::replace_na(position, " ")
         ) %>%
-        ungroup() 
+        dplyr::ungroup() 
       
       # Tooltip text
       waffle_df <- waffle_df %>%
-        mutate(tooltip = glue("MP: {lastFirstName}<br>club: {club}<br>Function: {position}"))
+        dplyr::mutate(tooltip = glue::glue("MP: {lastFirstName}<br>club: {club}<br>Function: {position}"))
       
       # ggplot
       p <- ggplot(waffle_df, aes(x = col, y = -row, fill = club, text = tooltip)) +
@@ -62,8 +63,8 @@ mod_committees_server <- function(id){
         )
       
 # Convert to interactive plotly
-ggplotly(p, tooltip = "text") %>%
-  layout(
+plotly::ggplotly(p, tooltip = "text") %>%
+  plotly::layout(
     hoverlabel = list(
       bgcolor = "white", 
       bordercolor = "black", 

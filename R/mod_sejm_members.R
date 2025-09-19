@@ -7,6 +7,9 @@
 #' @noRd 
 #'
 #' @import ggplot2
+#' @import dplyr
+#' @import tidyr
+#' @import plotly
 #' @importFrom shiny NS tagList 
 #' @importFrom shinipsum random_ggplotly
 #' @importFrom plotly renderPlotly plotlyOutput
@@ -28,20 +31,22 @@ mod_sejm_members_server <- function(id, df_mps){
       
 
 members_by_party <- df_mps %>%
-        group_by(club) %>%
-        arrange(lastName) %>%
-        mutate(party_size = n()) %>%
-        ungroup()
+        dplyr::group_by(club) %>%
+        dplyr::arrange(lastName) %>%
+        dplyr::mutate(party_size = dplyr::n()) %>%
+        dplyr::ungroup()
       
       # Order parties by size (optional)
       party_order <- members_by_party %>%
-        group_by(club) %>%
-        summarize(count = n()) %>%
-        arrange(desc(count)) %>%
-        pull(club)
+        dplyr::group_by(club) %>%
+        dplyr::summarize(count = dplyr::n()) %>%
+        dplyr::arrange(desc(count)) %>%
+        dplyr::pull(club)
       
       members_by_party$club <- factor(members_by_party$club, levels = rev(c("Razem", "Lewica", "Polska2050-TD", "PSL-TD", "KO", "PiS", "Republikanie", "Konfederacja", "niez.")))
-      members_arranged <- members_by_party %>% arrange(club, lastName) %>% ungroup()
+      members_arranged <- members_by_party %>% 
+        dplyr::arrange(club, lastName) %>% 
+        dplyr::ungroup()
 
 # trying plotly
 
@@ -52,10 +57,10 @@ map_to_angle <- function(x, a, b) {
 }
 
 members_arranged %>%
-  mutate(position = row_number()) %>%
-  mutate(pos_y = c(rep(1:5, 98), 1:4)) %>%
-  mutate(angle = map_to_angle(position, min(position), max(position))) %>%
-plot_ly(
+  dplyr::mutate(position = dplyr::row_number()) %>%
+  dplyr::mutate(pos_y = c(rep(1:5, 99), 1:3)) %>%
+  dplyr::mutate(angle = map_to_angle(position, min(position), max(position))) %>%
+plotly::plot_ly(
   type = 'scatterpolar',
   r = ~pos_y,
   text = ~firstLastName,
@@ -70,7 +75,7 @@ plot_ly(
     opacity = 0.6  # transparency (0 = invisible, 1 = solid)
   )
 ) %>%
-  layout(
+  plotly::layout(
     polar = list(
       sector = c(0,180),
       radialaxis = list(

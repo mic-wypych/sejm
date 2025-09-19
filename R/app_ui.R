@@ -7,10 +7,25 @@
 #' @noRd
 app_ui <- function(request) {
   tagList(
+    tags$link(rel = "stylesheet", type = "text/css", href = "styles.css"),
     # Leave this function for adding external resources
     golem_add_external_resources(),
+    div(
+    div(#structure for the intro
+      div("Ta aplikacja pozwala przejrzeć informacje o Polskim sejmie", style = "
+    position: absolute;
+    left: 0;
+    top: 20;
+    width: 50vw;
+    height: 30vh;
+    background-color: white;
+    border-top-right-radius: 50% 100%;
+    border-bottom-right-radius: 50% 100%;
+  "),
+      
+    style = "display: flex; justify-content: center; align-items: center; width: 100vw; height: 100vh; background-color: #780000;"),
     # Your application UI logic
-    bslib::page_navbar(
+    div(bslib::page_navbar(
       title = "Polski Sejm",
       theme = bslib::bs_theme(
         bg = "#FFF",
@@ -50,8 +65,8 @@ app_ui <- function(request) {
       )
       
       
-    )
-  )
+    ), style = "width: 100vw; height:100vh;")
+  ))
 }
 
 #' Add external Resources to the Application
