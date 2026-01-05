@@ -60,7 +60,8 @@ app_ui <- function(request) {
           title = "Głosowania w sejmie",
           bslib::nav_panel("Głosowania", mod_votes_ui("votes_1")),
           bslib::nav_panel("Głosowania w czasie", mod_votes_time_ui("votes_time_1")),
-          bslib::nav_panel("Głosowania posłów", mod_votes_mps_ui("votes_mps_1"))
+          bslib::nav_panel("Głosowania posłów", mod_votes_mps_ui("votes_mps_1")),
+          bslib::nav_panel("Sieć głosowań", mod_mp_network_ui("mp_network_1"))
         )
       )
       

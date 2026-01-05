@@ -8,9 +8,10 @@ Description: Convenience functions that wrap around the Polish Sejm API to
     that shows some of the data available from the API in an interactive
     form.
 License: MIT + file LICENSE
-Imports: 
+Imports:
     bslib,
     config,
+    data.table,
     dplyr,
     DT,
     ggplot2,
@@ -20,6 +21,8 @@ Imports:
     purrr,
     shinipsum,
     shiny,
+    tidyr,
+    visNetwork,
     widyr
 Suggests: 
     quarto,
